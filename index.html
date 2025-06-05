@@ -210,7 +210,28 @@
   <button class="mode-toggle" onclick="toggleMode()" id="modeToggle">🌙</button>
 
   <img src="img/Paulo.jpg" alt="Paulo" class="profile-pic" />
-  <h1>PAULO CARVALHO</h1>
+  <h1 style="
+    font-family: 'Impact', sans-serif;
+    font-size: 3em;
+    text-transform: uppercase;
+    background: linear-gradient(45deg, black, red, black);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: blink 1s infinite;
+  ">
+    PAULO CARVALHO
+  </h1>
+
+  <style>
+    @keyframes blink {
+      0%, 100% {
+        opacity: 1;
+      }
+      50% {
+        opacity: 0.5;
+      }
+    }
+  </style>
   <p>Links para acesso rápido:</p>
 
   <a class="link-button instagram" href="https://www.instagram.com/paulovenicio/" target="_blank">
@@ -229,12 +250,48 @@
     <i class="fab fa-steam"></i>Steam
   </a>
 
-  <div class="pix-section">
-    <h2>💰 Apoie o Paulo via Pix</h2>
+  <button class="copy-button pulsating" onclick="togglePixSection()">💰 Chave PIX do Paulo</button>
+  <div class="pix-section pulsating-border" id="pixSection" style="display: none;">
     <p>Chave Pix (e-mail):</p>
     <input type="text" class="pix-key" id="pixKey" value="paulocarvalho_costa@hotmail.com" readonly />
     <button class="copy-button" onclick="copyPixKey()">Copiar Chave</button>
   </div>
+
+  <style>
+    .pulsating {
+      animation: fadePulse 2s infinite;
+    }
+
+    .pulsating-border {
+      border: 2px solid gold;
+      animation: borderPulse 2s infinite;
+    }
+
+    @keyframes fadePulse {
+      0%, 100% {
+        opacity: 1;
+      }
+      50% {
+        opacity: 0.5;
+      }
+    }
+
+    @keyframes borderPulse {
+      0%, 100% {
+        box-shadow: 0 0 5px gold;
+      }
+      50% {
+        box-shadow: 0 0 15px gold;
+      }
+    }
+  </style>
+
+  <script>
+    function togglePixSection() {
+      const pixSection = document.getElementById("pixSection");
+      pixSection.style.display = pixSection.style.display === "none" ? "block" : "none";
+    }
+  </script>
 
   <button class="top-button" onclick="window.scrollTo({ top: 0, behavior: 'smooth' });">↑</button>
 
