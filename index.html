@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Paulo Carvalho</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-  
+
   <!-- Favicon criado via SVG com letras PC -->
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 fill=%23000%22/><text x=%2250%22 y=%2270%22 font-size=%2280%22 fill=%23fff%22 font-family=%22Segoe UI, Tahoma, Geneva, Verdana, sans-serif%22 font-weight=%22bold%22 text-anchor=%22middle%22>PC</text></svg>" type="image/svg+xml" />
 
@@ -85,11 +85,12 @@
       transform: scale(1.02);
     }
 
-    .instagram { border-left: 6px solid #E1306C; }
-    .facebook  { border-left: 6px solid #104df5; }
-    .whatsapp  { border-left: 6px solid #25D366; }
-    .youtube   { border-left: 6px solid #da0606; }
-    .steam     { border-left: 6px solid #0844e9; }
+    .instagram     { border-left: 6px solid #E1306C; }
+    .facebook      { border-left: 6px solid #104df5; }
+    .whatsapp      { border-left: 6px solid #25D366; }
+    .youtube       { border-left: 6px solid #da0606; }
+    .mercadolivre  { border-left: 6px solid #f7f307; }
+    .steam         { border-left: 6px solid #0844e9; }
 
     .pix-section {
       background-color: var(--button-bg);
@@ -203,6 +204,30 @@
         padding: 15px;
       }
     }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.5; }
+    }
+
+    .pulsating {
+      animation: fadePulse 2s infinite;
+    }
+
+    .pulsating-border {
+      border: 2px solid gold;
+      animation: borderPulse 2s infinite;
+    }
+
+    @keyframes fadePulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.5; }
+    }
+
+    @keyframes borderPulse {
+      0%, 100% { box-shadow: 0 0 5px gold; }
+      50% { box-shadow: 0 0 15px gold; }
+    }
   </style>
 </head>
 <body>
@@ -210,28 +235,18 @@
   <button class="mode-toggle" onclick="toggleMode()" id="modeToggle">🌙</button>
 
   <img src="img/Paulo.jpg" alt="Paulo" class="profile-pic" />
+
   <h1 style="
     font-family: 'Impact', sans-serif;
-    font-size: 2em;
+    font-size: 3em;
     text-transform: uppercase;
     background: linear-gradient(45deg, black, red, black);
     -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
     animation: blink 1s infinite;
-  ">
-    PAULO CARVALHO
-  </h1>
+  ">PAULO CARVALHO</h1>
 
-  <style>
-    @keyframes blink {
-      0%, 100% {
-        opacity: 1;
-      }
-      50% {
-        opacity: 0.5;
-      }
-    }
-  </style>
   <p>Links para acesso rápido:</p>
 
   <a class="link-button instagram" href="https://www.instagram.com/paulovenicio/" target="_blank">
@@ -242,6 +257,9 @@
   </a>
   <a class="link-button youtube" href="https://www.youtube.com/@PauloCarvalhoPC" target="_blank">
     <i class="fab fa-youtube"></i>YouTube
+  </a>
+  <a class="link-button mercadolivre" href="https://mercadolivre.com/sec/28yZeye" target="_blank">
+    <i class="fas fa-store"></i>Mercado Livre
   </a>
   <a class="link-button whatsapp" href="https://wa.me/+5599981498648" target="_blank">
     <i class="fab fa-whatsapp"></i>WhatsApp
@@ -257,42 +275,6 @@
     <button class="copy-button" onclick="copyPixKey()">Copiar Chave</button>
   </div>
 
-  <style>
-    .pulsating {
-      animation: fadePulse 2s infinite;
-    }
-
-    .pulsating-border {
-      border: 2px solid gold;
-      animation: borderPulse 2s infinite;
-    }
-
-    @keyframes fadePulse {
-      0%, 100% {
-        opacity: 1;
-      }
-      50% {
-        opacity: 0.5;
-      }
-    }
-
-    @keyframes borderPulse {
-      0%, 100% {
-        box-shadow: 0 0 5px gold;
-      }
-      50% {
-        box-shadow: 0 0 15px gold;
-      }
-    }
-  </style>
-
-  <script>
-    function togglePixSection() {
-      const pixSection = document.getElementById("pixSection");
-      pixSection.style.display = pixSection.style.display === "none" ? "block" : "none";
-    }
-  </script>
-
   <button class="top-button" onclick="window.scrollTo({ top: 0, behavior: 'smooth' });">↑</button>
 
   <footer>
@@ -300,13 +282,12 @@
     <div>&copy; 2025 - Paulo Carvalho - Todos os direitos reservados</div>
   </footer>
 
-  <!-- Música instrumental de elevador -->
-  <audio autoplay loop muted id="bg-music">
-    <source src="music/audio.mp3" />
-    Seu navegador não suporta áudio HTML5.
-  </audio>
-
   <script>
+    function togglePixSection() {
+      const pixSection = document.getElementById("pixSection");
+      pixSection.style.display = pixSection.style.display === "none" ? "block" : "none";
+    }
+
     function copyPixKey() {
       const pixKey = document.getElementById("pixKey").value;
       navigator.clipboard.writeText(pixKey)
@@ -337,33 +318,6 @@
 
     setInterval(updateDateTime, 1000);
     updateDateTime();
-
-    // Ativa o som após o clique do usuário (exigência dos navegadores modernos)
-    document.body.addEventListener('click', () => {
-      const audio = document.getElementById('bg-music');
-      if (audio.muted) {
-      audio.muted = false;
-      audio.play();
-      }
-    });
-
-    // Add a button to pause/play the music
-    const musicToggleButton = document.createElement('button');
-    musicToggleButton.textContent = '⏸️';
-    musicToggleButton.className = 'mode-toggle';
-    musicToggleButton.style.top = '70px'; // Position below the mode toggle button
-    musicToggleButton.onclick = () => {
-      const audio = document.getElementById('bg-music');
-      if (audio.paused) {
-      audio.play();
-      musicToggleButton.textContent = '⏸️';
-      } else {
-      audio.pause();
-      musicToggleButton.textContent = '▶️';
-      }
-    };
-    document.body.appendChild(musicToggleButton);
   </script>
-
 </body>
 </html>
