@@ -5,8 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Paulo Carvalho</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-
-  <!-- Favicon criado via SVG com letras PC -->
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 fill=%23000%22/><text x=%2250%22 y=%2270%22 font-size=%2280%22 fill=%23fff%22 font-family=%22Segoe UI, Tahoma, Geneva, Verdana, sans-serif%22 font-weight=%22bold%22 text-anchor=%22middle%22>PC</text></svg>" type="image/svg+xml" />
 
   <style>
@@ -28,7 +26,7 @@
 
     body {
       margin: 0;
-      padding: 40px 20px 100px;
+      padding: 40px 20px clamp(100px, 10vh, 150px);
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       background-color: var(--bg-color);
       color: var(--text-color);
@@ -51,7 +49,27 @@
 
     h1 {
       margin: 0;
-      font-size: 2em;
+      font-size: 1.6em;
+      text-transform: uppercase;
+      font-family: 'Impact', sans-serif;
+      background: whitesmoke;
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      transition: transform 0.3s ease, text-shadow 0.3s ease;
+      cursor: pointer;
+    }
+
+    @media (hover: hover) and (pointer: fine) {
+      h1:hover {
+        transform: scale(1.05);
+        text-shadow: 0 0 10px rgb(0, 17, 255);
+      }
+    }
+
+    h1:active {
+      transform: scale(1.08);
+      text-shadow: 0 0 12px #00fff7;
     }
 
     p {
@@ -68,7 +86,7 @@
       background-color: var(--button-bg);
       border: 2px solid #333;
       padding: 15px 20px;
-      margin: 10px 0;
+      margin: 12px auto;
       border-radius: 8px;
       color: var(--text-color);
       font-size: 1.1em;
@@ -187,7 +205,7 @@
 
     @media (max-width: 480px) {
       h1 {
-        font-size: 1.6em;
+        font-size: 2.4em;
       }
 
       .link-button {
@@ -199,15 +217,16 @@
         font-size: 1.2em;
       }
 
+      .copy-button,
+      .pix-key {
+        font-size: 1em;
+        width: 100%;
+      }
+
       footer {
         font-size: 0.8em;
         padding: 15px;
       }
-    }
-
-    @keyframes blink {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.5; }
     }
 
     .pulsating {
@@ -234,18 +253,9 @@
 
   <button class="mode-toggle" onclick="toggleMode()" id="modeToggle">🌙</button>
 
-  <img src="img/Paulo.jpg" alt="Paulo" class="profile-pic" />
+  <img src="img/Paulo.jpg" alt="Foto de perfil de Paulo Carvalho" class="profile-pic" />
 
-  <h1 style="
-    font-family: 'Impact', sans-serif;
-    font-size: 3em;
-    text-transform: uppercase;
-    background: linear-gradient(45deg, black, red, black);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    animation: blink 1s infinite;
-  ">PAULO CARVALHO</h1>
+  <h1>PAULO CARVALHO</h1>
 
   <p>Links para acesso rápido:</p>
 
